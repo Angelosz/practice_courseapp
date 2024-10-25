@@ -9,9 +9,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -54,14 +53,17 @@ fun CourseCard(course: Course, modifier: Modifier = Modifier){
         ) {
             Image(
                 painter = painterResource(course.image),
-                contentDescription = stringResource(course.name)
+                contentDescription = stringResource(course.name),
+                modifier = Modifier.size(68.dp)
             )
-            Column(modifier = Modifier.padding(horizontal = 12.dp)){
+            Column{
                 Text(
                     text = stringResource(course.name),
-                    style = MaterialTheme.typography.labelLarge
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp)
                 )
                 Row(
+                    modifier = Modifier.padding(start = 16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Icon(
@@ -84,7 +86,7 @@ fun CourseGrid(courses: List<Course>, modifier: Modifier = Modifier){
         columns = GridCells.Fixed(2),
         modifier = modifier.fillMaxSize()
             .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(courses) { CourseCard(it) }
